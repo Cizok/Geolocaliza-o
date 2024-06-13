@@ -12,16 +12,16 @@
     <!-- leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <title>Geoloc</title>
+    <title>Geolocalização</title>
+    <link rel="icon" type="" href="png-transparent-letter-case-letter-t-alphabet-times-new-roman-angle-text-rectangle.png">
 </head>
  
 <body>
-    <h1>Geoloc</h1>
    
-    <nav class="navbar navbar-light bg-light fixed-top">
+  <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Mapa</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <a class="navbar-brand" style="color: white" href="#">Mapa</a>
+          <button class="navbar-toggler" type="button" style="color: grey" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -32,26 +32,39 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Clique aqui para ver sua localização atual</a>
                 </li>
               </form>
             </div>
           </div>
         </div>
       </nav>
+
       <div id="mapid"></div>
+     <button onclick="botao()" class="button_slide slide_right">Veja sua Localização</button>
+
      
     <script>
-        function success (position){
+         var map = L.map('mapid').setView([51.5, -0.09 ], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+        function botao (){
+
+          function success (position){
             console.log(position)
-            var map = L.map('mapid').setView([ position.coords.latitude, position.coords.longitude], 13);
+            
+            map.setView([position.coords.latitude, position.coords.longitude], 20);
  
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
  
-            L.marker([ position.coords.latitude, position.coords.longitude]).addTo(map).bindPopup(`Latitude: ${position.coords.latitude} <br> Longitude: ${position.coords.longitude}`).openPopup();
-        }
+            L.marker([position.coords.latitude, position.coords.longitude]).addTo(map).bindPopup(`Latitude: ${position.coords.latitude} <br> Longitude: ${position.coords.longitude}`).openPopup();
+            
+            alert(`Latitude: ${position.coords.latitude} |  Longitude: ${position.coords.longitude}`);
+
+          }
  
         function error (){
             console.log("Não pegou a loc")
@@ -63,6 +76,7 @@
         } else {
             console.log("Erro. Navegador não suporta geoloc");
         }
-    </script>
+        }
+        </script>
 </body>
 </html>

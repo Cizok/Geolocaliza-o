@@ -1,4 +1,11 @@
 #mapid{
-    height: 200px;
-    width: 200px;
+    height: 400px;
+    width: 600px;
 }
+.button_slide {
+    background-color: black;
+    color: white;
+    border: 2px solid grey; /* Green */
+    border-radius: 5px;
+
+  }

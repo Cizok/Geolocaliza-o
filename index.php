@@ -14,6 +14,8 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <title>Geolocalização</title>
     <link rel="icon" type="" href="png-transparent-letter-case-letter-t-alphabet-times-new-roman-angle-text-rectangle.png">
+    <!--pwa-->
+    <link rel="manifest" href="manifest.json">
 </head>
  
 <body>
